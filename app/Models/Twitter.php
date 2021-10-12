@@ -16,6 +16,7 @@ class Twitter extends Model
         'twitter_oauth_token',
         'twitter_oauth_token_secret'
     ];
+  //  protected $table="twitters";
     public function Users(){
         return $this->belongsTo(User::class);
     }

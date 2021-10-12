@@ -58,7 +58,7 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-    public function twitter(){
+    public function Twitter(){
         return $this->hasMany(Twitter::class);
     }
 }

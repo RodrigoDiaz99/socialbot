@@ -15,11 +15,13 @@ class CreateTwittersTable extends Migration
     {
         Schema::create('twitters', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+
             $table->string('twitter_screen_name')->nullable();
             $table->string('twitter_oauth_token')->nullable();
             $table->string('twitter_oauth_token_secret')->nullable();
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
