@@ -25,11 +25,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('img/apple-icon.png')}}" />
-    <link rel="stylesheet" href="{{asset('css/all.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/app2.css')}}" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{{secure_asset('img/apple-icon.png')}}" />
+    <link rel="stylesheet" href="{{secure_asset('css/all.min.css')}}" />
+    <link rel="stylesheet" href="{{secure_asset('css/app2.css')}}" />
 
-    <link rel="stylesheet" href="{{asset('css/tailwind.css')}}" />
+    <link rel="stylesheet" href="{{secure_asset('css/tailwind.css')}}" />
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 
