@@ -76,31 +76,30 @@ class TwitterController extends Controller
             $file = $request->file('attachment');
         }
 
+        return $this->postMessageToTwitter($twitter->twitter_oauth_token, $twitter->twitter_oauth_token_secret, $message, $file);
 
-       return $this->postMessageToTwitter($twitter->twitter_oauth_token, $twitter->twitter_oauth_token_secret, $message,$file);
-
-       // return redirect()->route('twitter.index');
+        // return redirect()->route('twitter.index');
     }
-public function postMessageToTwitter($oauth_token, $oauth_token_secret, $message, $file = null) //file has default as null
+    public function postMessageToTwitter($oauth_token, $oauth_token_secret, $message, $file = null) //file has default as null
+
     {
         $push = new TwitterOAuth($this->consumerKey, $this->consumerSecret, $oauth_token, $oauth_token_secret); //$file has default as null
         $push->setTimeouts(10, 15);
         $push->ssl_verifypeer = true;
         if (!empty($file)) { //if a file has been
-       // $media=$push->upload('media/upload',['media'=>$file]);
-       //error
-          $media=$push->storage_path('app/public/twitter/' . $file);
-           // dd($media);
+            $media = $push->upload('media/upload', ['media' => $file]);
+
+            // dd($media);
             $parameters = [
                 'status' => $message,
-                'media_ids' => $media->media_id_string
+                'media_ids' => $media->media_id_string,
             ];
             $push->post('statuses/update', $parameters); //push attachment with message to twitter status
         } else {
             $push->post('statuses/update', array('status' => $message)); //message without attachment
         }
         //$push->post('statuses/update', ['status' => $message]);
-       // return response()->json($push->getLastbody());
+        // return response()->json($push->getLastbody());
         return redirect()->route('dashboard');
     }
 
