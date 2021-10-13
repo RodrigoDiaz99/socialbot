@@ -69,25 +69,28 @@ class TwitterController extends Controller
     {
         $twitter = Twitter::query()->first();
         $message = $request->input('message');
-        $hasFile = $request->hasFile('attachment'); //true or false
-        $file = null; //set the file to
+        //$hasFile = $request->hasFile('attachment'); //true or false
+        $hasFile = $request->file('attachment');
+        //$hasFile = $file->storeAs('public/videoCover', $coverName);
+       // $file = null; //set the file to
 
-        if (!is_null($file)) {
-            $file = $request->file('attachment');
+        if ($hasFile) {
+            $coverName = time();
+            $pathCover = $hasFile->storeAs('public/twitter', $coverName);
         }
 
-        return $this->postMessageToTwitter($twitter->twitter_oauth_token, $twitter->twitter_oauth_token_secret, $message, $file);
+        return $this->postMessageToTwitter($twitter->twitter_oauth_token, $twitter->twitter_oauth_token_secret, $message, $hasFile);
 
         // return redirect()->route('twitter.index');
     }
-    public function postMessageToTwitter($oauth_token, $oauth_token_secret, $message, $file = null) //file has default as null
+    public function postMessageToTwitter($oauth_token, $oauth_token_secret, $message, $hasFile) //file has default as null
 
     {
         $push = new TwitterOAuth($this->consumerKey, $this->consumerSecret, $oauth_token, $oauth_token_secret); //$file has default as null
         $push->setTimeouts(10, 15);
         $push->ssl_verifypeer = true;
-        if (!empty($file)) { //if a file has been
-            $media = $push->upload('media/upload', ['media' => $file]);
+        if (!empty($hasFile)) { //if a file has been
+            $media = $push->upload('public/twitter', ['media' =>$hasFile]);
 
             // dd($media);
             $parameters = [
