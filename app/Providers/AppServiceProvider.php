@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use NascentAfrica\Jetstrap\JetstrapFacade;
+use Illuminate\Pagination\Paginator;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,8 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if(config('app.env') === 'production') {
-            \URL::forceScheme('https');
-        }
+        Paginator::useBootstrap();
+        JetstrapFacade::useCoreUi3();
+        JetstrapFacade::useAdminLte3();
     }
 }

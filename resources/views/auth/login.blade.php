@@ -1,58 +1,60 @@
 <x-guest-layout>
+    <x-jet-authentication-card>
+        <x-slot name="logo">
+            <x-jet-authentication-card-logo />
+        </x-slot>
 
-    <main>
-        <section class="relative w-full h-full py-40 min-h-screen">
-            <div class="absolute top-0 w-full h-full bg-blueGray-800 bg-full bg-no-repeat"
-                style="background-image: url(img/register_bg_2.png)"></div>
-            <div class="container mx-auto px-4 h-full">
-                <div class="flex content-center items-center justify-center h-full">
-                    <div class="w-full lg:w-4/12 px-4">
-                        <div
-                            class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
+        <div class="card-body">
 
-                            <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                                <div class="text-blueGray-400 text-center mb-3 font-bold">
-                                    <small>Ingresa tus credenciales</small>
-                                </div>
-                                @if (session('status'))
-        <div class="mb-4 font-medium text-sm text-green-600">
-            {{ session('status') }}
-        </div>
-    @endif
-                                <form method="POST" action="{{ route('login') }}">
-                                    @csrf
-                                    <div class="relative w-full mb-3">
-                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                            for="grid-password">Email</label><input type="email" name="email" :value="old('email')" required autofocus id="email"
-                                            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                            placeholder="Email" />
-                                    </div>
-                                    <div class="relative w-full mb-3">
-                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                            for="grid-password">Contraseña</label><input type="password" id="password"
-                                            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                            placeholder="Password" name="password" required autocomplete="current-password" />
-                                    </div>
+            <x-jet-validation-errors class="mb-3 rounded-0" />
 
+            @if (session('status'))
+                <div class="alert alert-success mb-3 rounded-0" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
 
-                                    <div class="text-center mt-6">
-                                        <button
-                                            class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                                            type="submit">
-                                            Acceder
-                                        </button>
-                                    </div>
-                                </form>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <div class="mb-3">
+                    <x-jet-label value="{{ __('Email') }}" />
 
+                    <x-jet-input class="{{ $errors->has('email') ? 'is-invalid' : '' }}" type="email"
+                                 name="email" :value="old('email')" required />
+                    <x-jet-input-error for="email"></x-jet-input-error>
+                </div>
 
-                            </div>
+                <div class="mb-3">
+                    <x-jet-label value="{{ __('Password') }}" />
 
-                        </div>
+                    <x-jet-input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" type="password"
+                                 name="password" required autocomplete="current-password" />
+                    <x-jet-input-error for="password"></x-jet-input-error>
+                </div>
 
+                <div class="mb-3">
+                    <div class="custom-control custom-checkbox">
+                        <x-jet-checkbox id="remember_me" name="remember" />
+                        <label class="custom-control-label" for="remember_me">
+                            {{ __('Remember Me') }}
+                        </label>
                     </div>
                 </div>
-            </div>
 
-        </section>
+                <div class="mb-0">
+                    <div class="d-flex justify-content-end align-items-baseline">
+                        @if (Route::has('password.request'))
+                            <a class="text-muted me-3" href="{{ route('password.request') }}">
+                                {{ __('Forgot your password?') }}
+                            </a>
+                        @endif
 
+                        <x-jet-button>
+                            {{ __('Log in') }}
+                        </x-jet-button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </x-jet-authentication-card>
 </x-guest-layout>

@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-        \Chatify\ChatifyServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -191,7 +191,7 @@ return [
     */
 
     'aliases' => [
-        'Chatify' => Chatify\Facades\ChatifyMessenger::class,
+
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
@@ -211,6 +211,7 @@ return [
         'Gate' => Illuminate\Support\Facades\Gate::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
         'Http' => Illuminate\Support\Facades\Http::class,
+        'Js' => Illuminate\Support\Js::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
