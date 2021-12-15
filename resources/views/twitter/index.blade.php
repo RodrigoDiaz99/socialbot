@@ -1,6 +1,6 @@
 @include('layouts.app')
 @section('content')
-
+ddd
     <div class="py-6">
         <div class="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
             <div class="w-1/3 bg-cover"
