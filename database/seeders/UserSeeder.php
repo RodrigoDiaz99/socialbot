@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         $super = User::create([
             'name' => 'Super Admin',
             'email' => 'store@serviciospeninsula.xyz',
-            'nickname'=>'nickname1',
+
             'email_verified_at'=>'2021-06-01 19:07:38',
             'password' => Hash::make('serviciospeninsula12'),
 
@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
          $super2 = User::create([
             'name' => 'Carlos Ramirez',
             'email' => 'carlosramirez@mymexicanshop.com',
-            'nickname'=>'nickname2',
+
             'email_verified_at'=>'2021-06-01 19:07:38',
             'password' => Hash::make('Secret12'),
 
@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
             'name' => 'Lulu Martinez',
 
             'email' => 'lulumartinez@mymexicanshop.com',
-            'nickname'=>'nickname3',
+
             'email_verified_at'=>'2021-06-01 19:07:38',
             'password' => Hash::make('Secret12'),
 
@@ -52,7 +52,7 @@ class UserSeeder extends Seeder
             'name' => 'Uriel Esqueda',
 
             'email' => 'urielesqueda@mymexicanshop.com',
-            'nickname'=>'nickname4',
+
             'email_verified_at'=>'2021-06-01 19:07:38',
             'password' => Hash::make('Secret12'),
 
